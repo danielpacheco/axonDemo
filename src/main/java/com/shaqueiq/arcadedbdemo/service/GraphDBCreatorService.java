@@ -63,23 +63,30 @@ public class GraphDBCreatorService {
 				    create property Hospital.name if not exists string;
 				    create index if not exists on Hospital (name) unique;
 				
+				    create vertex type Practice if not exists;
+				    create property Practice.name if not exists string;
+				    create index if not exists on Practice (name) unique;
+				
 				""";
 				log.debug(STR."Vertexes: created");
 				database.command("sqlscript", script);
 
 		script =
-				"""
-				    delete from Physician;
-				    delete from Hospital;
-				
+				"""				
 				    insert into Physician(name) values("Jose Aleman");
 				    insert into Physician(name) values("Daniel Pacheco");
+				    insert into Physician(name) values("Oleg Surajev");
 				
 				    insert into Hospital(name) values("Johns Hopkins");
 				    insert into Hospital(name) values("Mayo Clinics");
+				    insert into Hospital(name) values("Ronald Reagan UCLA Medical Center");
+				
+				    insert into Practice(name) values("Direct Primary Care");
+				    insert into Practice(name) values("Solo Practice");
+				    insert into Practice(name) values("Group Practice");
 
 				""";
-		log.debug(STR."Physician and Hospital data: created!");
+		log.debug(STR."Data: created");
 		database.command("sqlscript", script);
 
 		script =
@@ -88,19 +95,28 @@ public class GraphDBCreatorService {
 						    CREATE PROPERTY isAffiliated.`@out` link OF Physician;
 						    CREATE PROPERTY isAffiliated.`@in` link OF Hospital;
 				
-					
+				    CREATE EDGE TYPE doPractice IF NOT EXISTS;
+						    CREATE PROPERTY doPractice.`@out` link OF Physician;
+						    CREATE PROPERTY doPractice.`@in` link OF Practice;
+				
 				""";
 
-		log.debug(STR."Physician and Hospital edges: created!");
+		log.debug(STR."Edges: created");
 		database.command("sqlscript", script);
 
 		script =
 				"""
 				CREATE EDGE isAffiliated FROM (SELECT FROM Physician WHERE name = 'Daniel Pacheco') to (SELECT FROM Hospital) IF NOT EXISTS;
 				CREATE EDGE isAffiliated FROM (SELECT FROM Physician WHERE name = 'Jose Aleman') to (SELECT FROM Hospital WHERE name = 'Mayo Clinics') IF NOT EXISTS;
+				CREATE EDGE isAffiliated FROM (SELECT FROM Physician WHERE name = 'Oleg Surajev') to (SELECT FROM Hospital WHERE name = 'Ronald Reagan UCLA Medical Center') IF NOT EXISTS;
+				
+				CREATE EDGE doPractice FROM (SELECT FROM Physician WHERE name = 'Jose Aleman') to (SELECT FROM Practice WHERE name = 'Solo Practice') IF NOT EXISTS;
+				CREATE EDGE doPractice FROM (SELECT FROM Physician WHERE name = 'Daniel Pacheco') to (SELECT FROM Practice WHERE name = 'Direct Primary Care') IF NOT EXISTS;
+				CREATE EDGE doPractice FROM (SELECT FROM Physician WHERE name = 'Oleg Surajev') to (SELECT FROM Practice WHERE name = 'Direct Primary Care') IF NOT EXISTS;
+				CREATE EDGE doPractice FROM (SELECT FROM Physician WHERE name = 'Oleg Surajev') to (SELECT FROM Practice WHERE name = 'Group Practice') IF NOT EXISTS;
 				""";
 
-		log.debug(STR."edges data");
+		log.debug(STR."Edges data: created");
 		database.command("sqlscript", script);
 
 	}
