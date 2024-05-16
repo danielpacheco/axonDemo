@@ -45,23 +45,13 @@
 			<version>24.4.1</version>
 		</dependency>
 
-		<!--<dependency>
+		<dependency>
 			<groupId>org.axonframework</groupId>
 			<artifactId>axon-spring-boot-starter</artifactId>
 			<version>${axon.version}</version>
-		</dependency>-->
+		</dependency>
 
-<!--		<dependency>
-			<groupId>com.example</groupId>
-			<artifactId>rest-service-complete</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>com.arcadedb-demo2</groupId>
-			<artifactId>ArcadeDBDemo2</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
--->	</dependencies>
+	</dependencies>
 
 	<build>
 		<plugins>

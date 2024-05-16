@@ -1,12 +1,12 @@
 package com.shaqueiq.arcadedbdemo.service;
 
+import com.arcadedb.remote.RemoteServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.arcadedb.remote.RemoteDatabase;
-import com.arcadedb.remote.RemoteServer;
 
 import static java.lang.StringTemplate.STR;
 
@@ -16,37 +16,26 @@ public class GraphDBCreatorService {
 
 	private static final Logger log = LoggerFactory.getLogger(GraphDBCreatorService.class);
 
-	@Value("${arcadeDB.name}")
-	private String arcadeDBname;
-
-	@Value("${arcadeDB.port}")
-	private int port;
-
-	@Value("${arcadeDB.server}")
-	private String serverDomain;
-
-	@Value("${arcadeDB.user}")
-	private String user;
-
-	@Value("${arcadeDB.password}")
-	private String password;
-
 	private RemoteDatabase database;
 
-
+	@Autowired
+	private ArcadeDBService arcadeDBService;
+	
 	public void create() {
-		RemoteServer server = new RemoteServer(serverDomain, port, user, password);
-		database = new RemoteDatabase(serverDomain, port, arcadeDBname, user, password);
+
+		RemoteServer server = arcadeDBService.getServer();
+		String arcadeDBname = arcadeDBService.getArcadeDBname();
 
 		if (!server.exists(arcadeDBname)) {
 		    server.create(arcadeDBname);
-		    log.debug(STR."Database: \{arcadeDBname} created!");
+		    log.debug(STR."Database: \{arcadeDBname } created!");
 		} else {
+			database = arcadeDBService.getRemoteDatabase();
 			database.drop();
 			database.close();
 			server.create(arcadeDBname);
-			database = new RemoteDatabase(serverDomain, port, arcadeDBname, user, password);
-			log.debug(STR."Database: \{arcadeDBname} exists, connected!");
+			database = arcadeDBService.getRemoteDatabase();
+			log.debug(STR."Database: \{arcadeDBname } exists, connected!");
 		}
 		createUpdateSchema();
 	}

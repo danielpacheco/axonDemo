@@ -12,12 +12,8 @@ import com.shaqueiq.arcadedbdemo.model.Result;
 @RestController
 public class DataCreationController {
 	
-	private static final String template = "Hello, %s!";
-	private final AtomicLong counter = new AtomicLong();
-	
 	@Autowired
 	private GraphDBCreatorService graphDbCreatorService;
-
 	
 	@GetMapping("/create")
 	public Result create(@RequestParam(value = "name", defaultValue = "Good") String msg) {
