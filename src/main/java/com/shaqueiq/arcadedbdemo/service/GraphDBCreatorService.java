@@ -28,6 +28,7 @@ public class GraphDBCreatorService {
 
 		if (!server.exists(arcadeDBname)) {
 		    server.create(arcadeDBname);
+			database = arcadeDBService.getRemoteDatabase();
 		    log.debug(STR."Database: \{arcadeDBname } created!");
 		} else {
 			database = arcadeDBService.getRemoteDatabase();

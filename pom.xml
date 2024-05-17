@@ -51,6 +51,33 @@
 			<version>${axon.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-configuration</artifactId>
+			<version>${axon.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.axonframework</groupId>
+			<artifactId>axon-server-connector</artifactId>
+			<version>${axon.version}</version>
+		</dependency>
+
+<!--		<dependency>-->
+<!--			&lt;!&ndash;https://docs.axoniq.io/reference-guide/extensions/spring-aot&ndash;&gt;-->
+<!--			<groupId>org.axonframework.extensions.spring-aot</groupId>-->
+<!--			<artifactId>axon-spring-aot</artifactId>-->
+<!--			<version>4.8.0</version>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.axonframework.extensions.kafka</groupId>-->
+<!--			<artifactId>axon-kafka</artifactId>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.axonframework.extensions.mongo</groupId>-->
+<!--			<artifactId>axon-mongo</artifactId>-->
+<!--		</dependency>-->
+
 	</dependencies>
 
 	<build>
@@ -81,6 +108,7 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
+
 	</repositories>
 
 </project>
