@@ -7,7 +7,7 @@ import org.axonframework.queryhandling.QueryHandler;
 import org.springframework.stereotype.Service;
 
 @Service
-public class HospitalAgreggateService {
+public class HospitalAgreggateQueryGateway {
 
     @QueryHandler
     public Hospital getHospital(GetHospitalQuery query) throws ExecutionException {
