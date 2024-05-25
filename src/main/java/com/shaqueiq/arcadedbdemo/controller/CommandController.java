@@ -5,7 +5,6 @@ import com.shaqueiq.arcadedbdemo.cqrs.GetHospitalQuery;
 import com.shaqueiq.arcadedbdemo.cqrs.aggregate.HospitalAggregate;
 import com.shaqueiq.arcadedbdemo.model.Hospital;
 import com.shaqueiq.arcadedbdemo.model.Physician;
-import com.shaqueiq.arcadedbdemo.service.HospitalQueryService;
 //import org.axonframework.queryhandling.responsetypes.ResponseTypes;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.messaging.responsetypes.ResponseTypes;

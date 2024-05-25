@@ -1,4 +1,4 @@
-package com.shaqueiq.arcadedbdemo.service;
+package com.shaqueiq.arcadedbdemo.cqrs.handler;
 
 import com.shaqueiq.arcadedbdemo.cqrs.AffiliateEvent;
 import org.axonframework.eventhandling.EventHandler;
