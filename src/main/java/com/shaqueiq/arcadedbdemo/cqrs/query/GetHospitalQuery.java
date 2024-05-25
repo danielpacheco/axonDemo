@@ -1,4 +1,4 @@
-package com.shaqueiq.arcadedbdemo.cqrs;
+package com.shaqueiq.arcadedbdemo.cqrs.query;
 
 public class GetHospitalQuery {
 

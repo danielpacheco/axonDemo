@@ -1,8 +1,9 @@
 package com.shaqueiq.arcadedbdemo;
 
-import com.shaqueiq.arcadedbdemo.cqrs.AffiliateCommand;
-import com.shaqueiq.arcadedbdemo.cqrs.AffiliateEvent;
+import com.shaqueiq.arcadedbdemo.cqrs.command.AffiliateCommand;
+import com.shaqueiq.arcadedbdemo.cqrs.event.AffiliateEvent;
 import com.shaqueiq.arcadedbdemo.cqrs.aggregate.HospitalAggregate;
+import com.shaqueiq.arcadedbdemo.model.Constants;
 import com.shaqueiq.arcadedbdemo.model.Hospital;
 import com.shaqueiq.arcadedbdemo.model.Physician;
 import org.axonframework.test.aggregate.AggregateTestFixture;
@@ -30,7 +31,7 @@ class ArcadedbDemoApplicationTests {
 	@Test
 	public void testAffiliation() {
 		String id = UUID.randomUUID().toString();
-		Physician danielP = new Physician("Daniel P");
+		Physician danielP = new Physician(Constants.DANIEL_P);
 		Hospital mayo = new Hospital("Mayo");
 		fixture.givenNoPriorActivity()
 				.when(new AffiliateCommand(id, danielP, mayo))

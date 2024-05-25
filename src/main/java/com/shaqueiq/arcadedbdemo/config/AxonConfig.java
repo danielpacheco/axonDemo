@@ -6,6 +6,8 @@ import org.axonframework.config.Configurer;
 import org.axonframework.config.DefaultConfigurer;
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
 import org.axonframework.eventsourcing.eventstore.inmemory.InMemoryEventStorageEngine;
+import org.axonframework.modelling.saga.repository.SagaStore;
+import org.axonframework.modelling.saga.repository.inmemory.InMemorySagaStore;
 import org.axonframework.queryhandling.QueryBus;
 import org.axonframework.queryhandling.QueryUpdateEmitter;
 import org.axonframework.queryhandling.SimpleQueryBus;
@@ -27,6 +29,12 @@ public class AxonConfig {
     @Bean
     public EventStorageEngine storageEngine() {
         return new InMemoryEventStorageEngine();
+    }
+
+    @Bean
+    public SagaStore mySagaStore() {
+//        return new MongoSagaStore(...); // default is JpaSagaStore
+        return new InMemorySagaStore();
     }
 
     @Bean

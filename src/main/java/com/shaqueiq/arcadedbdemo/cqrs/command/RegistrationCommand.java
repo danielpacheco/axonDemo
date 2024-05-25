@@ -1,4 +1,4 @@
-package com.shaqueiq.arcadedbdemo.cqrs;
+package com.shaqueiq.arcadedbdemo.cqrs.command;
 
 import com.shaqueiq.arcadedbdemo.model.Hospital;
 import com.shaqueiq.arcadedbdemo.model.Physician;
@@ -6,7 +6,7 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 import java.util.UUID;
 
-public class AffiliateEvent {
+public class RegistrationCommand {
 
     @TargetAggregateIdentifier
     private String id = UUID.randomUUID().toString();
@@ -21,19 +21,15 @@ public class AffiliateEvent {
         return physician;
     }
 
-    public void setPhysician(Physician physician) {
-        this.physician = physician;
-    }
-
     public Hospital getHospital() {
         return hospital;
     }
 
-    public void setHospital(Hospital hospital) {
-        this.hospital = hospital;
+    public void setPhysician(Physician physician) {
+        this.physician = physician;
     }
 
-    public AffiliateEvent(String id, Physician physician, Hospital hospital) {
+    public RegistrationCommand(String id, Physician physician, Hospital hospital) {
         this.id = id;
         this.physician = physician;
         this.hospital = hospital;
