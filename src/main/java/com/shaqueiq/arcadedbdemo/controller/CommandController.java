@@ -26,9 +26,6 @@ import java.util.concurrent.ExecutionException;
 public class CommandController {
 
 	@Autowired
-	private HospitalAggregate hospitalAggregate;
-
-	@Autowired
 	private CommandGateway commandGateway;
 
 	@Autowired
@@ -60,11 +57,13 @@ public class CommandController {
 			@RequestParam(value = Constants.NAME, defaultValue = Constants.DANIEL_P) String name)
 			throws ExecutionException, InterruptedException {
 
-//		SagaLifecycle.associateWith(Constants.ID, UUID.randomUUID().toString());
 		CompletableFuture<String> future = commandGateway.send(
 				new RegistrationCommand("111", new Physician(name), new Hospital(Constants.MAYO_CLINICS)));
-//		return ResponseEntity.ok(STR."ok: \{future.get()}");
-		return ResponseEntity.ok("ok: "+future.get());
+
+//		CompletableFuture<String> future = commandGateway.send(
+//				new AffiliateCommand(UUID.randomUUID().toString(), new Physician(name), new Hospital(Constants.MAYO_CLINICS)));
+
+		return ResponseEntity.ok("ok eventId: "+future.get());
 	}
 
 }
