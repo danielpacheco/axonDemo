@@ -18,13 +18,12 @@ import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-@Saga
-//        (sagaStore = "mySagaStore")
+@Saga(sagaStore = "mySagaStore")
 public class SagaHandler {
 
     @Autowired
     private final CommandGateway commandGateway;
-    //    private final CommandGateway commandGateway;
+
     private Set<Physician> physicians = new HashSet<>();
     private String id= UUID.randomUUID().toString();
 
@@ -32,11 +31,7 @@ public class SagaHandler {
         this.commandGateway = commandGateway;
     }
 
-//    public SagaHandler(CommandGateway commandGateway) {
-//        this.commandGateway = commandGateway;
-//    }
-
-    @StartSaga
+//    @StartSaga
     @SagaEventHandler(associationProperty = "id")
     public void on(RegistrationEvent event) throws ExecutionException, InterruptedException {
         id = event.getId();
@@ -51,11 +46,11 @@ public class SagaHandler {
             physicians.add(event.getPhysician());
             CompletableFuture<String> future = commandGateway.send(
                     new AffiliateCommand(UUID.randomUUID().toString(), new Physician(name), new Hospital(Constants.MAYO_CLINICS)));
-//            System.out.println("ok: "+future.get());
-            System.out.println(STR."ok: \{future.get()}");
+            System.out.println("ok, saga done: "+future.get().toString());
+//            System.out.println(STR."ok: \{future.get()}");
             //create edge and affiliate to more several hospital at same time
         }
-        SagaLifecycle.end();
+//        SagaLifecycle.end();
     }
 
 }
