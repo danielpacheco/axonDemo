@@ -61,11 +61,11 @@ public class HospitalAggregate {
             physicians.add(event.getPhysician());
 //            CompletableFuture<String> future = commandGateway.send(
 //                    new AffiliateCommand(UUID.randomUUID().toString(), new Physician(name), new Hospital(Constants.MAYO_CLINICS)));
-            System.out.println("ok, saga done2");
+            System.out.println("ok saga, physician added: "+name);
 //            System.out.println(STR."ok: \{future.get()}");
             //create edge and affiliate to more several hospital at same time
         }
-        System.out.println("ok, saga done1");
+        System.out.println("ok, saga finished");
 //        SagaLifecycle.end();
     }
 
