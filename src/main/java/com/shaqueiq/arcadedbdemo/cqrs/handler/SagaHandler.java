@@ -22,16 +22,15 @@ import java.util.concurrent.ExecutionException;
 public class SagaHandler {
 
     @Autowired
-    private final CommandGateway commandGateway;
+    private CommandGateway commandGateway;
 
     private Set<Physician> physicians = new HashSet<>();
     private String id= UUID.randomUUID().toString();
 
-    public SagaHandler(CommandGateway commandGateway) {
-        this.commandGateway = commandGateway;
+    public SagaHandler() {
     }
 
-//    @StartSaga
+    @StartSaga
     @SagaEventHandler(associationProperty = "id")
     public void on(RegistrationEvent event) throws ExecutionException, InterruptedException {
         id = event.getId();

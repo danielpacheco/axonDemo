@@ -47,7 +47,7 @@ public class HospitalAggregate {
         apply(new RegistrationEvent(command.getPhysician(), command.getHospital()));
     }
 
-    @SagaEventHandler(associationProperty = "id")
+//    @SagaEventHandler(associationProperty = "id")
     public void on(RegistrationEvent event) throws ExecutionException, InterruptedException {
         id = event.getId();
         registrationSaga(event);
@@ -59,8 +59,8 @@ public class HospitalAggregate {
         //not member of X association
         if (!name.equals(Constants.DANIEL_P)) {
             physicians.add(event.getPhysician());
-//            CompletableFuture<String> future = commandGateway.send(
-//                    new AffiliateCommand(UUID.randomUUID().toString(), new Physician(name), new Hospital(Constants.MAYO_CLINICS)));
+            CompletableFuture<String> future = commandGateway.send(
+                    new AffiliateCommand(UUID.randomUUID().toString(), new Physician(name), new Hospital(Constants.MAYO_CLINICS)));
             System.out.println("ok saga, physician added: "+name);
 //            System.out.println(STR."ok: \{future.get()}");
             //create edge and affiliate to more several hospital at same time
