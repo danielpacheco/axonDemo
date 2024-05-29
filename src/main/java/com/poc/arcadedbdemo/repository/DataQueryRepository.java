@@ -1,22 +1,13 @@
-package com.shaqueiq.arcadedbdemo.repository;
+package com.poc.arcadedbdemo.repository;
 
 import com.arcadedb.graph.Vertex;
 import com.arcadedb.query.sql.executor.ResultSet;
 import com.arcadedb.remote.RemoteDatabase;
-import com.shaqueiq.arcadedbdemo.model.Hospital;
-import com.shaqueiq.arcadedbdemo.service.ArcadeDBService;
-import com.shaqueiq.arcadedbdemo.service.HospitalAgreggateService;
-import org.axonframework.common.AxonConfigurationException;
-import org.axonframework.modelling.command.AbstractRepository;
-import org.axonframework.modelling.command.Aggregate;
-import org.axonframework.modelling.command.inspection.AggregateModel;
+import com.poc.arcadedbdemo.service.ArcadeDBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
-import javax.annotation.Nonnull;
 import java.util.Optional;
-import java.util.concurrent.Callable;
 
 @Repository
 public class DataQueryRepository {

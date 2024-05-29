@@ -1,4 +1,4 @@
-package com.poc.axondemo.model;
+package com.poc.arcadedbdemo.model;
 
 public interface Constants {
 

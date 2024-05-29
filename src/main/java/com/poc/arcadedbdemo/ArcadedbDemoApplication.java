@@ -1,4 +1,4 @@
-package com.poc.axondemo;
+package com.poc.arcadedbdemo;
 
 import org.axonframework.config.Configurer;
 import org.axonframework.config.DefaultConfigurer;

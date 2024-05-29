@@ -1,5 +1,6 @@
-package com.poc.axondemo.model;
+package com.poc.arcadedbdemo.model;
 
+import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 
 import java.util.UUID;

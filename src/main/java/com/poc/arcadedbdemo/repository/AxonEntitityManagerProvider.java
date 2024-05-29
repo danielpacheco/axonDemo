@@ -1,4 +1,4 @@
-package com.poc.axondemo.repository;
+package com.poc.arcadedbdemo.repository;
 
 public class AxonEntitityManagerProvider {//implements EntityManagerProvider {
 
